@@ -7,11 +7,21 @@ authors = [
     { name = "Martin Desombre", email = "martin.desombre1@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "argparse>=1.4.0",
+    "pygame>=2.6.1",
+]
 
 [project.scripts]
-randomwalkvf = "randomwalkvf:main"
+randomwalkcode = "randomwalkvf.randomwalkcode:main"
 
 [build-system]
 requires = ["uv_build>=0.9.5,<0.10.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.19.1",
+    "pytest>=9.0.2",
+    "ruff>=0.15.1",
+]
