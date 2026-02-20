@@ -1,0 +1,6 @@
+--- État final après 100 étapes ---
+Particule 1 : x=2, y=16
+Particule 2 : x=1, y=7
+Particule 3 : x=-8, y=16
+Particule 4 : x=6, y=6
+Particule 5 : x=2, y=-10
