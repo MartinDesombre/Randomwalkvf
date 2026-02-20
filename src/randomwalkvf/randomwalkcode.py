@@ -8,10 +8,17 @@ def main() -> None:
     parser.add_argument("-n","--nb-steps", type=int, required=False, default=100, metavar="INTEGER",help="Number of steps until end of simulation")
     parser.add_argument("--fps", type=int, default=5, metavar="INTEGER",help="The number of frames per second")
     parser.add_argument("-o", "--output", type=str, default="finalstate.txt", metavar="FILENAME",help="The file with the final state of the grid.")
+    parser.add_argument("-x", "--gui", action="store_true", help="Activate the pygame interface")
 
     args = parser.parse_args()
     sim = Simulation(args.nb_particules, args.nb_steps)
-    sim.afficher_chemin(fps=args.fps)
+    if args.gui:
+        print("Mode GUI activé. Fermez la fenêtre pour sauvegarder le fichier.")
+        sim.afficher_chemin(fps=args.fps)
+    else:
+        print("Mode silencieux (sans interface). Calcul en cours...")
+        sim.calculer_sans_affichage()
+        
     sim.ecrire_fichier(args.output)
 
 
