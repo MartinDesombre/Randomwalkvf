@@ -1,4 +1,5 @@
 uv run randomwalkcode 
+
 on a l'existence des differents parsers:
     --N    indique le nombre de particules (1 par défaut)
     --n    indique le nombre d'étapes (100 par défaut)
