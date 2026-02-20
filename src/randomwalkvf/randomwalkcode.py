@@ -2,21 +2,17 @@ import random
 import pygame
 import argparse
 
-
-#choses auxquelles penser:
-#plusieurs particules de differentes couleurs, mettre en ligne de commande le nb de particules, pas de collisions
-#mettre une proba peut etre pour les deplacements selon chacune des directions
-#comparer les coordonnées des particules avec la taille de l'ecran pour l'adapter et voir tous les chemins
-#demander à l'utilisateur quelle particule il veut voir pour zoomer
-#mettre nombre d'etapes à faire dans la commande
-
 def main() -> None:
     parser = argparse.ArgumentParser(description="Simulate random walk for particles.")
-    parser.add_argument("--particules", type=int, required=False, default=1, help="Number of particles")
-    parser.add_argument("--steps", type=int, required=False, default=100, help="Number of steps until end of simulation")
+    parser.add_argument("-N","--nb-particules", type=int, required=False, default=1, metavar="INTEGER",help="Number of particles")
+    parser.add_argument("-n","--nb-steps", type=int, required=False, default=100, metavar="INTEGER",help="Number of steps until end of simulation")
+    parser.add_argument("--fps", type=int, default=5, metavar="INTEGER",help="The number of frames per second")
+    parser.add_argument("-o", "--output", type=str, default="finalstate.txt", metavar="FILENAME",help="The file with the final state of the grid.")
+
     args = parser.parse_args()
-    sim = Simulation(args.particules, args.steps)
-    sim.afficher_chemin()
+    sim = Simulation(args.nb_particules, args.nb_steps)
+    sim.afficher_chemin(fps=args.fps)
+    sim.ecrire_fichier(args.output)
 
 
 class Particule:
@@ -50,7 +46,7 @@ class Simulation():
         
         self.steps_totaux = steps
 
-    def afficher_chemin(self):
+    def afficher_chemin(self, fps: int):
         pygame.init()
         pygame.font.init()
         width, height = 800, 600
@@ -96,7 +92,7 @@ class Simulation():
             screen.blit(text_surface, (10, 10))
             pygame.display.flip()
              #5 images par seconde
-            clock.tick(5)
+            clock.tick(fps)
         pygame.quit()
 
 
