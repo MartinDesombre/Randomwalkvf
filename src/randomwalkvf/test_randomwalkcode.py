@@ -1,6 +1,7 @@
 import os
 import pytest
 import pygame
+from unittest.mock import patch
 from randomwalkcode import Particule, Simulation
 
 def test_particule_init(): #pour verifiquer que la particule est bien initialisée
@@ -27,3 +28,12 @@ def test_ecrire_fichier(tmp_path):   #on vérifie que le fichier de sortie est b
     fichier_test = tmp_path / "test_output.txt"
     sim.ecrire_fichier(str(fichier_test))
     assert os.path.exists(fichier_test)
+
+def test_afficher_chemin_fermeture_immediate():    
+    os.environ["SDL_VIDEODRIVER"] = "dummy"  # on coupe l'affichage visuel pour que le test ne plante pas
+    sim = Simulation(nb_particules=2, steps=2)
+    with patch('pygame.event.get') as mock_event_get:      # On simule la fermeture instantanée de la fenetre
+        mock_event_get.return_value = [pygame.event.Event(pygame.QUIT)]
+        sim.afficher_chemin(fps=60)
+    del os.environ["SDL_VIDEODRIVER"]
+    #cette fonction je ne savais pas la faire tout seul... c'était pour dépasser 60% de coverage (avant son ecriture j'etais a 44%)
