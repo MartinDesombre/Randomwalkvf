@@ -22,3 +22,8 @@ def test_simulation_chemin_sans_affichage():  #pour verifier que le nombre d'ét
     for p in sim.particules:
         assert len(p.path) == 6 #on verifie qu'il y a la position initiale+5 nouvelles positions
 
+def test_ecrire_fichier(tmp_path):   #on vérifie que le fichier de sortie est bien créé
+    sim = Simulation(nb_particules=1, steps=2)
+    fichier_test = tmp_path / "test_output.txt"
+    sim.ecrire_fichier(str(fichier_test))
+    assert os.path.exists(fichier_test)
