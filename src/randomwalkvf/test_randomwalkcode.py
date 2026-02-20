@@ -3,6 +3,12 @@ import pytest
 import pygame
 from randomwalkcode import Particule, Simulation
 
+def test_particule_init(): #pour verifiquer que la particule est bien initialisée
+    p = Particule((0, 0), pygame.Color("red"))
+    assert p.position == [0, 0]
+    assert p.path == [(0, 0)]
+    assert p.color == pygame.Color("red")
+
 def test_particule_move():  #pour verifier que la particule bouge et que son chemin est mis à jour
     p = Particule((0, 0), (255, 0, 0))
     p.move()
