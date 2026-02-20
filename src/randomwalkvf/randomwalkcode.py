@@ -3,7 +3,8 @@ import pygame
 import argparse
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Simulate random walk for particles.")
+    parser = argparse.ArgumentParser(description="Simulate random walk for particles.", add_help=False)
+    parser.add_argument("-h", "--help", action="help", default=argparse.SUPPRESS, help="Vous pouvez simuler une marche aléatoire de N particules pendant n étapes, avec ou sans interface graphique et stocker la position finale dans un fichier texte.")
     parser.add_argument("-N","--nb-particules", type=int, required=False, default=1, metavar="INTEGER",help="Number of particles")
     parser.add_argument("-n","--nb-steps", type=int, required=False, default=100, metavar="INTEGER",help="Number of steps until end of simulation")
     parser.add_argument("--fps", type=int, default=5, metavar="INTEGER",help="The number of frames per second")
