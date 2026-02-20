@@ -106,7 +106,7 @@ class Simulation():
             pygame.display.flip()
              #5 images par seconde
             clock.tick(fps)
-        def ecrire_fichier(self, filename: str):  #on écrit dans le fichier l'état final de chaque particule
+    def ecrire_fichier(self, filename: str):  #on écrit dans le fichier l'état final de chaque particule
         with open(filename, "w", encoding="utf-8") as f:
             f.write(f"--- État final après {self.steps_totaux} étapes ---\n")
             for i, particule in enumerate(self.particules):
