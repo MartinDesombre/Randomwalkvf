@@ -17,8 +17,8 @@ def main() -> None:
         sim.afficher_chemin(fps=args.fps)
     else:
         print("Mode silencieux (sans interface). Calcul en cours...")
-        sim.calculer_sans_affichage()
-        
+        sim.chemin_sans_affichage()
+
     sim.ecrire_fichier(args.output)
 
 
@@ -52,6 +52,12 @@ class Simulation():
             self.particules.append(Particule((0, 0), c))
         
         self.steps_totaux = steps
+
+    def chemin_sans_affichage(self):  # si gui pas activé
+        for i in range(self.steps_totaux):
+            for particule in self.particules:
+                particule.move()
+        print(f"Calcul de {self.steps_totaux} étapes terminé")
 
     def afficher_chemin(self, fps: int):
         pygame.init()
