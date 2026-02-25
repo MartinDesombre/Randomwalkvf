@@ -10,8 +10,6 @@ requires-python = ">=3.13"
 dependencies = [
     "argparse>=1.4.0",
     "pygame>=2.6.1",
-    "pytest>=9.0.2",
-    "pytest-cov>=7.0.0",
 ]
 
 [project.scripts]
@@ -25,5 +23,6 @@ build-backend = "uv_build"
 dev = [
     "mypy>=1.19.1",
     "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
     "ruff>=0.15.1",
 ]
