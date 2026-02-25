@@ -1,8 +1,7 @@
 import os
-import pytest
 import pygame
 from unittest.mock import patch
-from randomwalkcode import Particule, Simulation
+from randomwalkvf.randomwalkcode import Particule, Simulation
 
 def test_particule_init(): #pour verifiquer que la particule est bien initialisée
     p = Particule((0, 0), pygame.Color("red"))
