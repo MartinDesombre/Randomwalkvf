@@ -24,11 +24,11 @@ def main() -> None:
 
 
 class Particule:
-    def __init__(self, position: tuple, color, historique):
+    def __init__(self, position: tuple, color):
         self.position = list(position)
         self.color = color
         self.path = [tuple(self.position)]
-        self.historique = [self.position]
+        
     
     def move(self):
         direction = random.randint(0,3)
@@ -41,7 +41,7 @@ class Particule:
         else:
             self.position[1] -= 1
         self.path.append(tuple(self.position))
-        self.historique.append(list(self.position))
+        
     
 
 
@@ -52,7 +52,7 @@ class Simulation():
             c = pygame.Color(0, 0, 0)
             hue = (360 * i) / nb_particules       #on l'utilise pour avoir toujours des couleurs différentes
             c.hsva = (hue, 100, 100, 100)
-            self.particules.append(Particule((0, 0), c))
+            self.particules.append(Particule((0, 0), c,))
         
         self.steps_totaux = steps
 
@@ -115,7 +115,7 @@ class Simulation():
             for i, particule in enumerate(self.particules):
                 x, y = particule.position
                 f.write(f"Particule {i+1} : x={x}, y={y}\n")
-                for etape, position in enumerate(particule.historique):
+                for etape, position in enumerate(particule.path):
                     f.write(f"  Étape {etape} : x={position[0]}, y={position[1]}\n")
         
         print(f"L'historique des états a été sauvegardé dans '{filename}'")
