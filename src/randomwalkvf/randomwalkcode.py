@@ -28,6 +28,7 @@ class Particule:
         self.position = list(position)
         self.color = color
         self.path = [tuple(self.position)]
+        
     
     def move(self):
         direction = random.randint(0,3)
@@ -40,6 +41,7 @@ class Particule:
         else:
             self.position[1] -= 1
         self.path.append(tuple(self.position))
+        
     
 
 
@@ -50,7 +52,7 @@ class Simulation():
             c = pygame.Color(0, 0, 0)
             hue = (360 * i) / nb_particules       #on l'utilise pour avoir toujours des couleurs différentes
             c.hsva = (hue, 100, 100, 100)
-            self.particules.append(Particule((0, 0), c))
+            self.particules.append(Particule((0, 0), c,))
         
         self.steps_totaux = steps
 
@@ -109,12 +111,14 @@ class Simulation():
             clock.tick(fps)
     def ecrire_fichier(self, filename: str):  #on écrit dans le fichier l'état final de chaque particule
         with open(filename, "w", encoding="utf-8") as f:
-            f.write(f"--- État final après {self.steps_totaux} étapes ---\n")
+            f.write(f"--- États pour {self.steps_totaux} étapes ---\n")
             for i, particule in enumerate(self.particules):
                 x, y = particule.position
                 f.write(f"Particule {i+1} : x={x}, y={y}\n")
+                for etape, position in enumerate(particule.path):
+                    f.write(f"  Étape {etape} : x={position[0]}, y={position[1]}\n")
         
-        print(f"L'état final a été sauvegardé dans '{filename}'")
+        print(f"L'historique des états a été sauvegardé dans '{filename}'")
         pygame.quit()
 
 
