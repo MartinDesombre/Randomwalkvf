@@ -115,6 +115,8 @@ class Simulation():
             for i, particule in enumerate(self.particules):
                 x, y = particule.position
                 f.write(f"Particule {i+1} : x={x}, y={y}\n")
+                for etape, position in enumerate(particule.historique):
+                    f.write(f"  Étape {etape} : x={position[0]}, y={position[1]}\n")
         
         print(f"L'historique des états a été sauvegardé dans '{filename}'")
         pygame.quit()
