@@ -2,9 +2,13 @@ import pygame
 from randomwalkvf.particule import Particule
 
 class Simulation(): 
+    """cette classe gère toute la simulation du random walk, gère une liste de particules et simule leur déplacement en fonction du nombre d'étapes"""
     def __init__(self, nb_particules: int, steps: int):
+        """initialise la simulation en créant les particules et en stockant le nombre d'étapes à simuler"""
         self.particules = []
+
         #on crée les particules en leur attribuant une couleur différente pour chacune en utilisant des teintes reparties sur l'arc en ciel
+        
         for i in range(nb_particules):
             c = pygame.Color(0, 0, 0)
             hue = (360 * i) / nb_particules      #repartition uniforme des teintes sur l'arc en ciel
@@ -14,6 +18,7 @@ class Simulation():
 
     #si gui pas activé on faut bouger les particules sans afficher le chemin
     def chemin_sans_affichage(self):  
+        """fait bouger les particules pendant le nombre d'étapes sans afficher le chemin"""
         for i in range(self.steps_totaux):
             for particule in self.particules:
                 particule.move()
@@ -23,6 +28,7 @@ class Simulation():
     #on renvoie toutes les valeurs necessaires pour transformer les coordonnées
 
     def calculer_zoom(self, width, height):
+        """calcule le facteur de zoom pour adapter l'affichage aux positions des particules"""
         all_x = [p[0] for part in self.particules for p in part.path]
         all_y = [p[1] for part in self.particules for p in part.path]
         min_x, max_x = min(all_x), max(all_x)
@@ -41,8 +47,10 @@ class Simulation():
     # on dessine le cadre de la fenetre en adaptant les coordonnées des particules au zoom et en affichant le nombre d'étapes réalisées
 
     def dessiner_cadre(self, screen, font, current_step, width, height):
+        """dessine le cadre de la fenetre avec les chemins des particules et le nombre d'étapes réalisées"""
         scale, min_x, max_x, min_y, max_y = self.calculer_zoom(width, height)
         def transform(x, y):
+            """transforme les coordonnées des particules en coordonnées d'écran en fonction du zoom et du centre de la fenetre"""
             screen_x = int((x - (min_x + max_x) / 2) * scale + width / 2)
             screen_y = int(-(y - (min_y + max_y) / 2) * scale + height / 2)
             return (screen_x, screen_y)
@@ -60,6 +68,7 @@ class Simulation():
     # on affiche le chemin des particules en les faisant bouger a chaque etape et en redessinant le cadre a chaque fois. 
     
     def afficher_chemin(self, fps: int):
+        """affiche le chemin des particules en les faisant bouger à chaque étape et en redessinant le cadre à chaque fois"""
         pygame.init()
         pygame.font.init()
         width, height = 800, 600
@@ -88,6 +97,7 @@ class Simulation():
     #on écrit dans le fichier toutes les étapes des particules en parcourant son path
 
     def ecrire_fichier(self, filename: str):  
+        """écrit dans le fichier toutes les étapes des particules en parcourant leur chemin"""
         with open(filename, "w", encoding="utf-8") as f:
             f.write(f"--- États pour {self.steps_totaux} étapes ---\n")
             for i, particule in enumerate(self.particules):

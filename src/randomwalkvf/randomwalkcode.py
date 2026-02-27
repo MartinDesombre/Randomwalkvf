@@ -1,11 +1,12 @@
 import argparse
 from randomwalkvf.simulation import Simulation
 
+#on définit les differents arguments que le programme peut prendre et que l'utilisateur doit renseigner
+#si l'utilisateur ne les renseigne pas, on utilise des valeurs par défaut, on n'affiche pas la fenetre pygame et on nomme le texte de sortie finalstate.txt
+
 def main() -> None:
-
-    #on définit les differents arguments que le programme peut prendre et que l'utilisateur doit renseigner
-    #si l'utilisateur ne les renseigne pas, on utilise des valeurs par défaut, on n'affiche pas la fenetre pygame et on nomme le texte de sortie finalstate.txt
-
+    """fonction principale qui gère les arguments de la ligne de commande, lance la simulation et écrit les résultats dans un fichier texte"""
+    
     parser = argparse.ArgumentParser(description="Simulate random walk for particles.", add_help=False)
     parser.add_argument("-h", "--help", action="help", default=argparse.SUPPRESS, help="Vous pouvez simuler une marche aléatoire de N particules pendant n étapes, avec ou sans interface graphique et stocker la position finale dans un fichier texte.")
     parser.add_argument("-N","--nb-particules", type=int, required=False, default=1, metavar="INTEGER",help="Number of particles")
