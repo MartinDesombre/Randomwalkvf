@@ -7,6 +7,7 @@ from randomwalkvf.simulation import Simulation
 #pour verifiquer que la particule est bien initialisée
 
 def test_particule_init(): 
+    """vérifie que la particule est bien initialisée avec la position, la couleur et le chemin corrects"""
     p = Particule((0, 0), pygame.Color("red"))
     assert p.position == [0, 0]
     assert p.path == [(0, 0)]
@@ -15,6 +16,7 @@ def test_particule_init():
 #pour verifier que la particule bouge et que son chemin est mis à jour
 
 def test_particule_move():  
+    """vérifie que la particule bouge d'une case dans une direction aléatoire et que son chemin est mis à jour"""
     p = Particule((0, 0), (255, 0, 0))
     p.move()
     assert len(p.path) == 2 #le chemin doit contenir la position initiale et la nouvelle position
@@ -24,6 +26,7 @@ def test_particule_move():
 #pour verifier que le nombre d'étapes est respecté
 
 def test_simulation_chemin_sans_affichage():  
+    """vérifie que le nombre d'étapes est respecté et que les particules ont bien bougé pendant ces étapes"""
     sim = Simulation(nb_particules=2, steps=5)
     sim.chemin_sans_affichage()
     for p in sim.particules:
@@ -32,6 +35,7 @@ def test_simulation_chemin_sans_affichage():
 #on vérifie que le fichier de sortie est bien créé
 
 def test_ecrire_fichier(tmp_path):   
+    """vérifie que le fichier de sortie est bien créé avec les positions finales des particules"""
     sim = Simulation(nb_particules=1, steps=2)
     fichier_test = tmp_path / "test_output.txt"
     sim.ecrire_fichier(str(fichier_test))
@@ -39,7 +43,8 @@ def test_ecrire_fichier(tmp_path):
 
 #on verifie la fonction d'affichage des chemins en simulant la fermeture de la fenetre
 
-def test_afficher_chemin_fermeture_immediate():    
+def test_afficher_chemin_fermeture_immediate():  
+    """vérifie que la fonction d'affichage des chemins gère correctement la fermeture immédiate de la fenêtre"""  
     os.environ["SDL_VIDEODRIVER"] = "dummy"  # on coupe l'affichage visuel pour que le test ne plante pas
     sim = Simulation(nb_particules=2, steps=2)
     with patch('pygame.event.get') as mock_event_get:      # On simule la fermeture instantanée de la fenetre
