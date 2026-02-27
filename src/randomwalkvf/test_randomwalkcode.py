@@ -1,7 +1,8 @@
 import os
 import pygame
 from unittest.mock import patch
-from randomwalkvf.randomwalkcode import Particule, Simulation
+from randomwalkvf.particule import Particule
+from randomwalkvf.simulation import Simulation
 
 #pour verifiquer que la particule est bien initialisée
 

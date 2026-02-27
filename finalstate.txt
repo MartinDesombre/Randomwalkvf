@@ -1,6 +1,41 @@
---- État final après 50 étapes ---
-Particule 1 : x=2, y=4
-Particule 2 : x=6, y=-2
-Particule 3 : x=5, y=-7
-Particule 4 : x=0, y=8
-Particule 5 : x=-5, y=-5
+--- États pour 2 étapes ---
+Particule 1 : x=0, y=0
+  Étape 0 : x=0, y=0
+  Étape 1 : x=-1, y=0
+  Étape 2 : x=0, y=0
+Particule 2 : x=-1, y=-1
+  Étape 0 : x=0, y=0
+  Étape 1 : x=0, y=-1
+  Étape 2 : x=-1, y=-1
+Particule 3 : x=2, y=0
+  Étape 0 : x=0, y=0
+  Étape 1 : x=1, y=0
+  Étape 2 : x=2, y=0
+Particule 4 : x=1, y=-1
+  Étape 0 : x=0, y=0
+  Étape 1 : x=1, y=0
+  Étape 2 : x=1, y=-1
+Particule 5 : x=-1, y=-1
+  Étape 0 : x=0, y=0
+  Étape 1 : x=0, y=-1
+  Étape 2 : x=-1, y=-1
+Particule 6 : x=0, y=0
+  Étape 0 : x=0, y=0
+  Étape 1 : x=0, y=1
+  Étape 2 : x=0, y=0
+Particule 7 : x=-1, y=1
+  Étape 0 : x=0, y=0
+  Étape 1 : x=-1, y=0
+  Étape 2 : x=-1, y=1
+Particule 8 : x=0, y=0
+  Étape 0 : x=0, y=0
+  Étape 1 : x=0, y=1
+  Étape 2 : x=0, y=0
+Particule 9 : x=1, y=-1
+  Étape 0 : x=0, y=0
+  Étape 1 : x=0, y=-1
+  Étape 2 : x=1, y=-1
+Particule 10 : x=0, y=0
+  Étape 0 : x=0, y=0
+  Étape 1 : x=1, y=0
+  Étape 2 : x=0, y=0
